@@ -7,10 +7,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class Hello {
+    private final HelloService helloService;
+
+    public Hello(HelloService helloService) {
+        this.helloService = helloService;
+    }
 
     @RequestMapping("/hello")
     @ResponseBody
     public String index(){
+        helloService.increment();
         return "hello";
     }
 }
